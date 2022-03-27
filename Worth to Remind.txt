@@ -1,0 +1,19 @@
+SELECT 
+    title, 
+    author_lname 
+FROM books 
+WHERE 
+    SUBSTR(author_lname,1,1) = 'C' OR 
+    SUBSTR(author_lname,1,1) = 'S';
+ 
+SELECT title, author_lname FROM books 
+WHERE SUBSTR(author_lname,1,1) IN ('C', 'S');
+
+/// REMEMBER THERE ARE A COMMA BEFORE CASE STATEMENT
+SELECT author_fname, author_lname,
+    CASE 
+        WHEN COUNT(*) = 1 THEN '1 book'
+        ELSE CONCAT(COUNT(*), ' books')
+    END AS COUNT
+FROM books 
+GROUP BY author_lname, author_fname;
